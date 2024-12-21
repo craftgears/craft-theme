@@ -1,0 +1,70 @@
+{{ define "main" }}
+  <div class="md:flex md:flex-col mx-auto gap-4 md:gap-6 py-10">
+    <article class="prose max-w-none">
+      <h1 class="text-3xl md:text-4xl text-center px-4 md:px-6">{{ .Title }}</h1>
+
+      <div class="flex items-center justify-center gap-x-2">
+        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+        {{ $dateHuman := .Date | time.Format ":date_long" }}
+        <i class="fa-regular fa-calendar"></i>
+        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+        ·
+        <i class="fa-regular fa-clock"></i>
+        <span>
+          {{ .ReadingTime }} min read
+        </span>
+      </div>
+
+      {{- if .Params.cover }}
+        {{ $coverLink := "" }}
+        {{- if (strings.HasPrefix .Params.cover "http") }}
+          {{ $coverLink = .Params.cover }}
+        {{- else }}
+          {{- with $coverImage := .Resources.Get .Params.cover -}}
+            {{ $coverImage := $coverImage.Process "resize 1500x" }}
+            {{ $coverLink = $coverImage.Permalink }}
+          {{- end }}
+        {{- end }}
+
+        {{ if eq .Params.coverMode "inline" }}
+          <div class="px-4">
+            <img class="md:mx-auto md:max-w-3xl bg-red-500 rounded-3xl" src="{{ $coverLink }}" alt="{{.Title}}" />
+          </div>
+        {{ else if eq .Params.coverMode "wide" }}
+          <img class="w-screen mx-auto md:max-w-[1900] aspect-video object-cover" src="{{ $coverLink }}" alt="{{.Title}}" />
+        {{ end }}
+      {{- end }}
+
+
+      <div class="prose mx-auto md:max-w-3xl px-4 md:px-6 py-6">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <div class="mx-auto md:max-w-3xl p-4 md:p-6 w-full">
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
+
+    <div class="md:mx-auto md:max-w-3xl p-4 md:px-6 w-full">
+      <div class="flex flex-col items-center bg-gray-100 rounded-3xl gap-4 text-dark2-color md:mx-auto md:max-w-3xl p-4 md:p-6 w-full">
+        <span class="text-center">Did you find this post helpful?<br/>Share it with others!</span>
+        <!-- social share -->
+        {{ partial "social-share.html" (dict "Context" . ) }}
+      </div>
+    </div>
+
+    <!-- Related posts -->
+    {{ $related := (where site.RegularPages "Section" "in" site.Params.mainSections) | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+    {{ $related = $related | shuffle | first 4 }}
+    {{ with $related }}
+      <div class="md:mx-auto md:max-w-3xl px-4 md:px-6 w-full">
+        <h2 class="text-2xl font-bold text-dark1-color pb-4">Related Posts</h2>
+        <div class="flex flex-col gap-4">
+          {{ range . }}
+            {{ partial "content/slim-card.html" . }}
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

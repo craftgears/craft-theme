@@ -1,0 +1,66 @@
+{{- /*
+Renders a menu for the given menu ID.
+
+@context {page} page The current page.
+@context {string} menuID The menu ID.
+
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/}}
+
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+  <input type="checkbox" id="menu-toggle" class="hidden peer" />
+    <label for="menu-toggle" class="block sm:hidden p-2 text-dark2-color">
+    <i class="fa-solid fa-bars text-dark2-color"></i>
+  </label>
+
+  <nav class="hidden peer-checked:block absolute top-16 left-0 w-full bg-white sm:bg-transparent shadow-md sm:static sm:shadow-none sm:block">
+    <ul class="flex text-sm items-center sm:justify-end flex-col gap-y-2 p-4 sm:flex-row sm:gap-x-2 sm:p-0 sm:text-dark2-color uppercase font-semibold">
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+      {{ if site.Params.search.enable }}
+        <button class="w-6 cursor-pointer" data-target="search-modal">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      {{ end }}
+    </ul>
+
+  </nav>
+{{- end }}
+
+{{- define "partials/inline/menu/walk.html" }}
+  {{- $page := .page }}
+  {{- $total := len .menuEntries }}
+  {{- range $index, $menu := .menuEntries }}
+    {{- $attrs := dict "href" .URL }}
+    {{- if or ($page.IsMenuCurrent .Menu .) (eq $page.Section .Identifier) }}
+      {{- $attrs = merge $attrs (dict "class" "active" "aria-selected" "true") }}
+    {{- else if $page.HasMenuCurrent .Menu .}}
+      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
+    {{- end }}
+    {{- $name := .Name }}
+    {{- with .Identifier }}
+      {{- with T . }}
+        {{- $name = . }}
+      {{- end }}
+    {{- end }}
+
+    <li>
+      <a
+        class="aria-selected:text-primary text-lg sm:text-base"
+        {{- range $k, $v := $attrs }}
+          {{- with $v }}
+            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- end }}
+        {{- end -}}
+      >{{ $name }}</a>
+      {{- with .Children }}
+        <ul>
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      {{- end }}
+    </li>
+    <li class="hidden sm:block">·</li>
+  {{- end }}
+{{- end }}

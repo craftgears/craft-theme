@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-name" content="craft" />
+
+<!-- hugo-modules: google adsense -->
+{{ partialCached "adsense-script.html" . }}
+
+<!-- hugo-modules: opengraph -->
+{{ partial "basic-seo.html" . }}
+
+<!-- hugo-modules: search -->
+{{ partial "search-index.html" . }}
+
+<!-- hugo-modules: images/favicon -->
+{{ partialCached "favicon" . }}
+
+<!-- hugo-modules: preloader -->
+{{ partial "preloader.html" . }}
+
+<!-- hugo-modules: site verifications -->
+{{ partial "site-verifications.html" . }}
+
+<!-- hugo-modules: mermaid -->
+{{ partial "mermaid/assets/js" . }}
+
+<!-- google analytics -->
+{{ if and site.Config.Services.GoogleAnalytics.ID (ne site.Config.Services.GoogleAnalytics.ID "G-MEASUREMENT_ID") }}
+  {{ template "_internal/google_analytics.html" . }}
+{{ end }}

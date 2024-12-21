@@ -1,0 +1,6 @@
+<h{{ .Level }} id="{{ .Anchor }}">
+  {{ .Text }}
+  {{ if le .Level 2 }}
+    <a class="text-dark3-color no-underline" href="#{{ .Anchor }}">#</a>
+  {{ end }}
+</h{{ .Level }}>

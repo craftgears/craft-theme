@@ -1,0 +1,30 @@
+<article class="group rounded-3xl duration-300 bg-black">
+  <a class="relative flex flex-col h-full" href="{{ .Permalink }}">
+    <figure class="shrink-0 w-full aspect-square overflow-hidden rounded-3xl">
+      {{- if .Params.cover }}
+        {{- if (strings.HasPrefix .Params.cover "http") }}
+          <img
+            class="object-cover group-hover:scale-105 duration-300"
+            src="{{ .Params.cover }}"
+            alt="{{ $.Name }}">
+        {{- else }}
+          {{- with $coverImage := .Resources.Get .Params.cover -}}
+            {{- $coverImage := $coverImage.Process "resize 700x" -}}
+            <img
+              class="object-cover group-hover:scale-105 duration-300"
+              src="{{ $coverImage.Permalink }}"
+              alt="{{ $.Name }}">
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    </figure>
+    <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-black/70 to-black rounded-3xl"></div>
+    <div class="absolute flex flex-col justify-end h-full flex-1 p-6">
+        <h3 class="mb-4 text-light1-color text-2xl font-bold">{{ .LinkTitle }}</h3>
+        <p class="mb-4 text-light2-color text-normal leading-normal line-clamp-2">{{ .Params.description }}</p>
+        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+        {{ $dateHuman := .Date | time.Format ":date_long" }}
+        <time class="text-light3-color" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    </div>
+  </a>
+</article>

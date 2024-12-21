@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-dark1-color: var(--color-gray-900);
+  --color-dark2-color: var(--color-gray-700);
+  --color-dark3-color: var(--color-gray-400);
+  --color-light1-color: var(--color-gray-100);
+  --color-light2-color: var(--color-gray-300);
+  --color-light3-color: var(--color-gray-500);
+
+  --color-primary: var(--color-sky-500);
+}
+
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+}

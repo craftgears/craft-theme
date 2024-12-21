@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <div class="flex flex-col md:max-w-7xl mx-auto w-full p-4 md:p-6">
+    <h2 class="text-3xl font-bold py-4">{{ .Title | humanize }}</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
+      {{ range ( .Paginator 10 ).Pages }}
+        {{- partial "content/slim-card.html" . -}}
+      {{ end }}
+    </div>
+
+    <div class="flex items-center mt-10">
+      {{- if .Paginator.HasPrev -}}
+      <a class="text-dark1-color bg-gray-200 hover:bg-gray-300 rounded-full py-1 md:py-1.5 mr-auto md:py-1.5 px-4 md:px-6 duration-300"
+          href="{{ .Paginator.Prev.URL }}">Previous</a>
+      {{- end -}}
+
+      {{- if .Paginator.HasNext -}}
+      <a class="text-dark1-color bg-gray-200 hover:bg-gray-300 rounded-full py-1 md:py-1.5 ml-auto md:py-1.5 px-4 md:px-6 duration-300"
+          href="{{ .Paginator.Next.URL }}">Next</a>
+      {{- end -}}
+    </div>
+  </div>
+{{ end }}

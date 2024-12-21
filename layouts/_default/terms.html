@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <div class="flex flex-col md:max-w-7xl mx-auto w-full p-4 md:p-6">
+    <h2 class="text-3xl font-bold py-4">{{ .Title | humanize }}</h2>
+
+    <div class="flex flex-wrap gap-2">
+      {{ range .Pages }}
+        <a class="px-4 py-1 md:py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 duration-300" href="{{ .RelPermalink }}">
+          {{ .LinkTitle}}
+        </a>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

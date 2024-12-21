@@ -1,0 +1,39 @@
+{{ define "main" }}
+  {{ .Content }}
+  <!-- Hugo Section -->
+  <div class="bg-gray-100 w-full p-4 md:px-8">
+    {{ $categories := site.Params.categories }}
+    {{ range $categories }}
+      <section class="md:flex md:flex-col md:max-w-7xl mx-auto pb-6 md:py-6">
+        <div class="flex items-center mb-4 md:mb-8">
+          <h2 class="font-bold text-3xl md:text-4xl text-dark1-color mr-auto">{{ . | humanize }}</h2>
+          <a class="text-dark1-color bg-gray-200 hover:bg-gray-300 rounded-full py-1 md:py-1.5 px-4 md:px-6 duration-300"
+            href="{{ printf "/categories/%s" . | absURL }}">More</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          {{ range where $.Site.RegularPages "Params.categories" "intersect" (slice . ) | first 3 }}
+            {{- partial "content/white-card" . -}}
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </div>
+
+  <!-- Recent Posts -->
+  <div class="bg-white w-full p-4 md:p-8 md:py-12">
+    <section class="md:flex md:flex-col md:max-w-7xl mx-auto md:py-6">
+      <div class="flex items-center mb-4 md:mb-8">
+        <h2 class="font-bold text-3xl md:text-4xl text-dark1-color mr-auto">Recent Posts</h2>
+        <a class="text-dark1-color bg-gray-200 hover:bg-gray-300 rounded-full py-1 md:py-1.5 px-4 md:px-6 duration-300"
+          href="{{ "/posts" | absURL }}">More</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+        {{ range site.RegularPages | first 6 }}
+          {{- partial "content/dark-card" . -}}
+        {{ end }}
+      </div>
+    </section>
+  </div>
+{{ end }}

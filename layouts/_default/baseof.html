@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  <!-- head -->
+  {{ partial "head.html" . }}
+
+  <!-- style -->
+  {{ partial "head/style.html" . }}
+</head>
+<body>
+  <header class="sticky top-0 z-50 md:flex w-full p-4 md:p-6 bg-white/80 backdrop-blur-md border-b border-dark3-color/30">
+    {{ partial "header.html" . }}
+  </header>
+
+  <!-- hugo-modules: search -->
+  {{ partial "search-modal.html" (dict "Context" .) }}
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="flex items-center justify-center bg-gray-100 w-full">
+    {{ partial "footer.html" . }}
+  </footer>
+
+  <!-- script -->
+  {{ partialCached "head/script.html" . }}
+  </body>
+</html>

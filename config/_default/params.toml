@@ -1,0 +1,91 @@
+################################################################################
+# Hudo Modules
+
+# Accordion
+[[plugins.js]]
+link = "js/accordion.js"
+
+# Tab
+[[plugins.js]]
+link = "js/tab.js"
+
+# Video
+[[plugins.js]]
+link = "plugins/youtube-lite.js"
+[[plugins.js]]
+link = "plugins/vimeo-lite.js"
+
+# Site Verifications
+[site_verification]
+google = ""   # Your verification code
+bing = ""     # Your verification code
+baidu = ""    # Your verification code
+facebook = "" # Your verification code
+mastodon = "" # Your verification code
+
+# Google Adsense, see https://www.google.com/adsense/
+google_adsense = "" # example: ca-pub-XXXXXXXXXX
+
+# Basic SEO: seo meta data for OpenGraph / Twitter Card
+[metadata]
+keywords = ["Craft", "Gears", "IT", "Tools"]
+description = "There is a wealth of information available on CraftGears. Be sure to visit!"
+author = "Craft Gears"
+image = "images/fallback.jpg" # this image will be used as fallback if a page has no image of its own
+
+# Modal
+[[plugins.js]]
+link = "js/modal.js"
+
+# Preloader
+[preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# Font Awesome
+[[plugins.css]]
+link = "plugins/font-awesome/v6/brands.css"
+[[plugins.css]]
+link = "plugins/font-awesome/v6/icons.css"
+[[plugins.css]]
+link = "plugins/font-awesome/v6/regular.css"
+[[plugins.css]]
+link = "plugins/font-awesome/v6/solid.css"
+
+# Gallery Slider
+[[plugins.css]]
+link = "plugins/glightbox/glightbox.css"
+lazy = true
+
+[[plugins.css]]
+link = "plugins/swiper/swiper-bundle.css"
+
+[[plugins.js]]
+link = "plugins/glightbox/glightbox.js"
+
+[[plugins.js]]
+link = "js/gallery-slider.js"
+lazy = true
+
+[[plugins.js]]
+link = "plugins/swiper/swiper-bundle.js"
+
+# Search
+[[plugins.js]]
+link = "js/search.js"
+
+[search]
+enable = true
+primary_color = "#ce8460"
+include_sections = ["posts"] # if `include_sections` empty, then sections will come from the `mainSections`
+# include_all_sections = true # if `include_all_sections` is true, then comment out the `include_sections`
+include_list_pages = false
+show_image = true
+show_description = true
+show_tags = true
+show_categories = true
+
+# Image
+[[plugins.js]]
+link = "plugins/lazy-loader.js"
+

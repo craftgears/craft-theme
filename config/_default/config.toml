@@ -1,0 +1,60 @@
+baseURL = 'https://example.com/'
+languageCode = 'en-us'
+title = 'Your site name'
+enableRobotsTXT = true
+
+[permalinks]
+posts = "/posts/:slug"
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-MEASUREMENT_ID'
+
+[build]
+  [[build.cachebusters]]
+    source = 'layouts/.*'
+    target = 'css'
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+    identifier = "posts"
+
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+    identifier = "tags"
+
+################################################################################
+# Markup
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+ordered = false
+
+################################################################################
+# Outputs
+[outputs]
+home = ["html", "rss", "SearchIndex"]
+page = ['html']
+rss = ['rss']
+section = ['html', 'rss']
+taxonomy = ['html', 'rss']
+term = ['html', 'rss']
+
+################################################################################
+# Output Format
+[outputFormats]
+[outputFormats.SearchIndex]
+mediaType = "application/json"
+baseName = "searchindex"
+isPlainText = true
+notAlternative = true

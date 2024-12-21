@@ -1,0 +1,53 @@
+// Image
+figure {
+  figcaption {
+    text-align: center;
+    font-style: italic;
+  }
+}
+
+// Notice
+.notice {
+  border-radius: var(--radius-2xl);
+}
+
+// ToC
+.table-of-content {
+  & summary {
+    border-radius: var(--radius-2xl);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  & nav {
+    border-radius: var(--radius-2xl);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  // open state
+  &[open] {
+    & summary {
+      border-radius: var(--radius-2xl);
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    & nav {
+      border-radius: var(--radius-2xl);
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+
+  // closed state
+  &:not([open]) {
+    & summary {
+      border-radius: var(--radius-2xl);
+    }
+
+    & nav {
+      border-radius: var(--radius-2xl);
+    }
+  }
+}

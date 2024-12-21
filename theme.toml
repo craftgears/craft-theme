@@ -1,0 +1,18 @@
+name = 'Craft'
+license = 'MIT'
+licenselink = 'https://github.com/owner/repo/LICENSE'
+description = 'Theme description'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/craftgears/craft-theme'
+
+# If you have a running demo of the theme
+demosite = 'https://owner.github.io/repo'
+
+# Taxonomy terms
+tags = ['blog', 'responsive', 'tailwindcss', 'personal', 'minimal']
+features = ['Search', 'Taxonomies']
+
+[author]
+  name = 'Mark Januex'
+  homepage = 'https://craftgears.com'

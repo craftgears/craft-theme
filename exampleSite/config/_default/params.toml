@@ -1,0 +1,13 @@
+favicon = "images/favicon.ico"
+categories = ["life"]
+
+[socials]
+  [socials.github]
+  link = "https://github.com"
+  [socials.facebook]
+  link = "https://facebook.com"
+  [socials.instagram]
+  link = "https://instagram.com"
+  [socials.x-twitter]
+  link = "https://x.com"
+
