@@ -1,5 +1,7 @@
 # Craft Theme
 
+**Do not use the theme. it's under development.**
+
 ## Features
 
 ## Installation
