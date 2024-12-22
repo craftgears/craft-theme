@@ -2,7 +2,7 @@
   {{ .Content }}
   <!-- Hugo Section -->
   <div class="bg-gray-100 w-full p-4 md:px-8">
-    {{ $categories := site.Params.categories }}
+    {{ $categories := site.Params.craft.categories }}
     {{ range $categories }}
       <section class="md:flex md:flex-col md:max-w-7xl mx-auto pb-6 md:py-6">
         <div class="flex items-center mb-4 md:mb-8">

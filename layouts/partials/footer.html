@@ -2,15 +2,15 @@
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
     <div class="flex flex-col gap-y-2 items-center lg:items-start w-full">
       <div class="flex items-center gap-x-1">
-        <i class="text-xl fa-solid fa-gear text-primary/80 "></i>
+        <i class="text-xl fa-solid {{ site.Params.craft.logo }} text-primary/80 "></i>
         <span class="uppercase text-2xl font-extrabold text-dark2-color">{{ site.Title }}</span>
       </div>
       <span class="text-dark2-color text-sm prose text-center lg:text-left">
-        Crafting Precision, One Gear at a Time<span class="hidden px-2 lg:inline-block">-</span><br class="lg:hidden"/>Time is money, friend!
+        {{ site.Params.craft.footer.message}}<span class="hidden px-2 lg:inline-block">-</span><br class="lg:hidden"/>{{ site.Params.craft.footer.subMessage}}
       </span>
     </div>
     <div class="flex gap-4 items-center justify-center">
-      {{ range $name, $social := site.Params.socials }}
+      {{ range $name, $social := site.Params.craft.socials }}
         {{ if $social.link}}
           <a target="_blank" href="{{ $social.link}}" rel="noopener">
             <i class="text-3xl text-dark2-color fa-brands fa-square-{{ $name }}"></i>

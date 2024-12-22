@@ -52,3 +52,9 @@ path = "github.com/gethugothemes/hugo-modules/accordion"
 
 [[imports]]
 path = "github.com/hugomods/mermaid"
+
+[[imports]]
+path = "github.com/craftgears/hugo-modules/scroll-indicator"
+
+[[imports]]
+path = "github.com/craftgears/hugo-modules/pretty-link"

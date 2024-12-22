@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between w-full md:max-w-7xl mx-auto">
   <a class="group flex items-center gap-x-1" href="/">
-    <i class="w-6 text-center text-xl fa-solid fa-gear text-primary group-hover:rotate-90 duration-500"></i>
+    <i class="w-6 text-center text-xl fa-solid {{ site.Params.craft.logo }} text-primary duration-500"></i>
     <span class="uppercase text-2xl font-extrabold text-dark1-color">{{ site.Title }}</span>
   </a>
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}

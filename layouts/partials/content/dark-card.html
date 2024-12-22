@@ -1,14 +1,14 @@
 <article class="group rounded-3xl duration-300 bg-black">
   <a class="relative flex flex-col h-full" href="{{ .Permalink }}">
     <figure class="shrink-0 w-full aspect-square overflow-hidden rounded-3xl">
-      {{- if .Params.cover }}
-        {{- if (strings.HasPrefix .Params.cover "http") }}
+      {{- if .Params.image }}
+        {{- if (strings.HasPrefix .Params.image "http") }}
           <img
             class="object-cover group-hover:scale-105 duration-300"
-            src="{{ .Params.cover }}"
+            src="{{ .Params.image }}"
             alt="{{ $.Name }}">
         {{- else }}
-          {{- with $coverImage := .Resources.Get .Params.cover -}}
+          {{- with $coverImage := .Resources.Get .Params.image -}}
             {{- $coverImage := $coverImage.Process "resize 700x" -}}
             <img
               class="object-cover group-hover:scale-105 duration-300"

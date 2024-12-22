@@ -1,13 +1,13 @@
 <a href="{{ .Permalink }}">
   <article class="relative flex flex-col md:flex-row group rounded-3xl overflow-hidden duration-300 bg-gray-100 md:h-48 md:p-4">
-    {{- if .Params.cover }}
-      {{- if (strings.HasPrefix .Params.cover "http") }}
+    {{- if .Params.image }}
+      {{- if (strings.HasPrefix .Params.image "http") }}
         <img
           class="rounded-3xl rounded-b-none md:rounded-b-3xl aspect-video md:aspect-square object-cover group-hover:scale-105 duration-300"
-          src="{{ .Params.cover }}"
+          src="{{ .Params.image }}"
           alt="{{ $.Name }}">
       {{- else }}
-        {{- with $coverImage := .Resources.Get .Params.cover -}}
+        {{- with $coverImage := .Resources.Get .Params.image -}}
           {{- $coverImage := $coverImage.Process "resize 700x" -}}
           <img
             class="rounded-3xl rounded-b-none md:rounded-b-3xl aspect-video md:aspect-square object-cover group-hover:scale-105 duration-300"

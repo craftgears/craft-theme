@@ -1,4 +1,7 @@
 {{ define "main" }}
+  <!-- hugo-modules: scroll-indicator -->
+  {{ partial "scroll-indicator.html" site.Params.scrollIndicator.color }}
+
   <div class="md:flex md:flex-col mx-auto gap-4 md:gap-6 py-10">
     <article class="prose max-w-none">
       <h1 class="text-3xl md:text-4xl text-center px-4 md:px-6">{{ .Title }}</h1>
@@ -15,12 +18,12 @@
         </span>
       </div>
 
-      {{- if .Params.cover }}
+      {{- if .Params.image }}
         {{ $coverLink := "" }}
-        {{- if (strings.HasPrefix .Params.cover "http") }}
-          {{ $coverLink = .Params.cover }}
+        {{- if (strings.HasPrefix .Params.image "http") }}
+          {{ $coverLink = .Params.image }}
         {{- else }}
-          {{- with $coverImage := .Resources.Get .Params.cover -}}
+          {{- with $coverImage := .Resources.Get .Params.image -}}
             {{ $coverImage := $coverImage.Process "resize 1500x" }}
             {{ $coverLink = $coverImage.Permalink }}
           {{- end }}

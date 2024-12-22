@@ -2,7 +2,7 @@
 title: "Cover Wide Mode"
 date: 2024-12-21T13:45:49+07:00
 description: Cover wide mode example
-cover: "images/altumcode-dC6Pb2JdAqs-unsplash.jpg"
+image: "images/altumcode-dC6Pb2JdAqs-unsplash.jpg"
 coverMode: wide
 categories:
   - life

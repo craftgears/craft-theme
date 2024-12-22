@@ -3,9 +3,6 @@ languageCode = 'en-us'
 title = 'Your site name'
 enableRobotsTXT = true
 
-[permalinks]
-posts = "/posts/:slug"
-
 [services]
   [services.googleAnalytics]
     id = 'G-MEASUREMENT_ID'
