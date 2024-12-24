@@ -1,5 +1,5 @@
 <a href="{{ .Permalink }}">
-  <article class="relative flex flex-col md:flex-row group rounded-3xl overflow-hidden duration-300 bg-gray-100 md:h-48 md:p-4">
+  <article class="relative flex flex-col md:flex-row group rounded-3xl overflow-hidden duration-300 bg-gray-100 md:h-48 md:p-4 hover:shadow-lg">
     {{- if .Params.image }}
       {{- if (strings.HasPrefix .Params.image "http") }}
         <img

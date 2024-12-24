@@ -1,6 +1,6 @@
-<article class="group rounded-3xl duration-300 bg-black">
+<article class="group rounded-3xl overflow-clip duration-300 bg-black hover:shadow-xl">
   <a class="relative flex flex-col h-full" href="{{ .Permalink }}">
-    <figure class="shrink-0 w-full aspect-square overflow-hidden rounded-3xl">
+    <figure class="shrink-0 w-full aspect-square">
       {{- if .Params.image }}
         {{- if (strings.HasPrefix .Params.image "http") }}
           <img
@@ -18,7 +18,7 @@
         {{- end }}
       {{- end }}
     </figure>
-    <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-black/70 to-black rounded-3xl"></div>
+    <div class="absolute w-full h-full bg-gradient-to-b from-transparent via-black/70 to-black"></div>
     <div class="absolute flex flex-col justify-end h-full flex-1 p-6">
         <h3 class="mb-4 text-light1-color text-2xl font-bold">{{ .LinkTitle }}</h3>
         <p class="mb-4 text-light2-color text-normal leading-normal line-clamp-2">{{ .Params.description }}</p>
