@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="bg-white w-full p-4 md:p-10 md:py-20">
+  <section class="flex flex-col md:max-w-7xl mx-auto pb-6 md:py-6 items-center">
+    {{- with $image := resources.Get "images/404.png" -}}
+      <img class="md:max-w-[500] md:max-h-[500] aspect-square opacity-50" src="{{ $image.Permalink }}" alt="404" />
+    {{- end }}
+
+    <a class="text-dark1-color bg-gray-200 hover:bg-gray-300 rounded-full py-1 md:py-1.5 px-4 md:px-6 duration-300"
+            href="{{ .Site.Home.RelPermalink }}">Return to the home page</a>
+  </section>
+</div>
+{{ end }}
