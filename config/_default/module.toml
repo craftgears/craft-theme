@@ -54,6 +54,9 @@ path = "github.com/gethugothemes/hugo-modules/accordion"
 path = "github.com/hugomods/mermaid"
 
 [[imports]]
+path = 'github.com/hugomods/giscus'
+
+[[imports]]
 path = "github.com/craftgears/hugo-modules/scroll-indicator"
 
 [[imports]]

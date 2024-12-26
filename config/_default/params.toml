@@ -88,4 +88,3 @@ show_categories = true
 # Image
 [[plugins.js]]
 link = "plugins/lazy-loader.js"
-
