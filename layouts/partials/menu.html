@@ -17,8 +17,8 @@ Renders a menu for the given menu ID.
   </label>
 
   <nav class="hidden peer-checked:block absolute top-16 left-0 w-full bg-white sm:bg-transparent shadow-md sm:static sm:shadow-none sm:block">
-    <ul class="flex text-sm items-center sm:justify-end flex-col gap-y-2 p-4 sm:flex-row sm:gap-x-2 sm:p-0 sm:text-dark2-color uppercase font-semibold">
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+    <ul class="flex text-sm items-center sm:justify-end flex-col gap-y-2 p-4 sm:flex-row sm:gap-x-1 sm:p-0 sm:text-dark2-color">
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" . "level" 0) }}
       {{ if site.Params.search.enable }}
         <button class="w-6 cursor-pointer" data-target="search-modal">
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -31,36 +31,53 @@ Renders a menu for the given menu ID.
 
 {{- define "partials/inline/menu/walk.html" }}
   {{- $page := .page }}
+  {{- $level := .level }}
   {{- $total := len .menuEntries }}
   {{- range $index, $menu := .menuEntries }}
     {{- $attrs := dict "href" .URL }}
-    {{- if or ($page.IsMenuCurrent .Menu .) (eq $page.Section .Identifier) }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-selected" "true") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
+    {{- $currentURL := $page.RelPermalink }}
+    {{- if .URL }}
+      {{- if eq .URL "/" }}
+        {{- if eq $currentURL "/" }}
+          {{- $attrs = merge $attrs (dict "class" "active" "aria-selected" "true") }}
+        {{- end }}
+      {{- else }}
+        {{- if or (eq $currentURL .URL) (hasPrefix $currentURL (printf "%s" .URL)) }}
+          {{- $attrs = merge $attrs (dict "class" "active" "aria-selected" "true") }}
+        {{- end }}
+      {{- end }}
+    {{- end}}
     {{- $name := .Name }}
+    {{- $icon := default "" .Params.Icon }}
     {{- with .Identifier }}
       {{- with T . }}
         {{- $name = . }}
       {{- end }}
     {{- end }}
 
-    <li>
+    <li class="relative group cursor-pointer text-nowrap py-1">
       <a
-        class="aria-selected:text-primary text-lg sm:text-base"
+        class="aria-selected:text-primary sm:text-base hover:bg-gray-200/80 p-1 px-2 rounded-md"
         {{- range $k, $v := $attrs }}
           {{- with $v }}
             {{- printf " %s=%q" $k $v | safeHTMLAttr }}
           {{- end }}
         {{- end -}}
-      >{{ $name }}</a>
+      >
+      {{ if not (eq $icon "") }} <i class="{{ $icon }} pr-1"></i> {{ end }}
+      {{ $name }}</a>
+
       {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
+        <div class="group-hover:block absolute -right-4 hidden h-auto bg-white border border-gray-100 shadow-md p-4 rounded-md">
+          <ul class="w-auto">
+            {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" . "level" (add $level 1)) }}
+          </ul>
+        </div>
       {{- end }}
     </li>
-    <li class="hidden sm:block">·</li>
+
+    {{- if eq $level 0 }}
+      <li class="hidden sm:block">·</li>
+    {{- end }}
   {{- end }}
 {{- end }}
