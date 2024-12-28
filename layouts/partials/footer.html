@@ -5,8 +5,9 @@
         <i class="text-xl fa-solid {{ site.Params.craft.logo }} text-primary/80 "></i>
         <span class="uppercase text-2xl font-extrabold text-dark2-color">{{ site.Title }}</span>
       </div>
-      <span class="text-dark2-color text-sm prose text-center lg:text-left">
-        {{ site.Params.craft.footer.message}}<span class="hidden px-2 lg:inline-block">-</span><br class="lg:hidden"/>{{ site.Params.craft.footer.subMessage}}
+      <span class="flex flex-col text-dark2-color text-sm prose items-center lg:items-start gap-1">
+        <span>{{ site.Params.craft.footer.message}}</span>
+        <span>{{ site.Params.craft.footer.subMessage}}</span>
       </span>
     </div>
     <div class="flex gap-4 items-center justify-center">

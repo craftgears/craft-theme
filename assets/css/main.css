@@ -4,7 +4,7 @@
 
 @theme {
   --color-dark1-color: var(--color-gray-900);
-  --color-dark2-color: var(--color-gray-700);
+  --color-dark2-color: var(--color-gray-600);
   --color-dark3-color: var(--color-gray-400);
   --color-light1-color: var(--color-gray-100);
   --color-light2-color: var(--color-gray-300);

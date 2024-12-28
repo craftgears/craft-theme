@@ -1,7 +1,21 @@
 {{ define "main" }}
-  {{ .Content }}
+  <!-- Banner -->
+  {{ with site.Params.banner }}
+    {{ $bannerLink := site.Params.banner }}
+    <div class="relative w-screen aspect-video h-72 lg:h-[500]">
+      <img src="{{ $bannerLink }}" alt="banner" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-radial from-transparent to-black opacity-50 pointer-events-none"></div>
+      <div class="absolute flex top-0 w-full h-full">
+        <div class="flex flex-col max-w-7xl mx-auto px-4 w-full h-full justify-center items-center md:items-end gap-1 md:gap-4">
+          <span class="text-2xl md:text-4xl font-bold text-light1-color">{{site.Params.bannerTitle}}</span>
+          <span class="hidden md:block md:text-xl italic font-light text-light1-color">{{site.Params.bannerSubTitle}}</span>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
   <!-- Hugo Section -->
-  <div class="bg-gray-100 w-full p-4 md:px-8">
+  <div class="bg-gray-100 w-full p-4 md:px-8 md:py-12">
     {{ $categories := site.Params.craft.categories }}
     {{ range $categories }}
       <section class="md:flex md:flex-col md:max-w-7xl mx-auto pb-6 md:py-6">
@@ -12,7 +26,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {{ range where $.Site.RegularPages "Params.categories" "intersect" (slice . ) | first 3 }}
+          {{ range where (where $.Site.RegularPages "Params.categories" "intersect" (slice . )) "Params.featured" "ne" true | first 3 }}
             {{- partial "content/white-card" . -}}
           {{ end }}
         </div>
@@ -30,7 +44,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-        {{ range site.RegularPages | first 6 }}
+        {{ range where (where site.RegularPages "Section" "posts") "Params.featured" "ne" true | first 6 }}
           {{- partial "content/dark-card" . -}}
         {{ end }}
       </div>
